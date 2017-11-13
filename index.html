@@ -58,7 +58,7 @@ delete $scope.contact
     <hr/>
     <input class="form-control" type="text" ng-model="contact.name" placeholder="Ex:José">
     <input class="form-control" type="text" ng-model="contact.phoneNumber" placeholder="Ex:99998848">
-    <button class="btn btn-primary btn-block" ng-click="addContact(contact)">Adiciona</button>
+    <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="!contact.name || !contact.phoneNumber">Adiciona</button>
 {{contact}}
   </div>
 </div>

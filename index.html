@@ -66,7 +66,7 @@
     {{contact}}
     <input class="form-control" type="text" ng-model="contact.name" placeholder="Ex:José">
     <input class="form-control" type="text" ng-model="contact.phoneNumber" placeholder="Ex:99998848">
-    <select class="form-control" ng-model="contact.operadora" ng-options="operadora.name for operadora in operadoras">
+    <select class="form-control" ng-model="contact.operadora" ng-options="operadora.id as operadora.name for operadora in operadoras">
       <option value="">Selecione uma operadora</option>
 
 

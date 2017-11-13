@@ -1,21 +1,66 @@
 <!DOCTYPE html>
-<html ng-app="helloWorld">
+<html ng-app="listaTelefonica">
 <head>
   <meta charset="utf-8">
-  <title>Hello World</title>
-  <script src="angular.js"></script>
+  <title>Lista telefonica</title>
+  <style>
+  .jumbotron {
+    width: 400px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .table {
+    margin-top:20px;
+  }
+  .form-control{
+    margin-bottom: 5px;
+  }
+  </style>
+  <script src="lib/angular/angular.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
   <script>
-  angular.module("helloWorld", []);
-  angular.module("helloWorld").controller("helloWorldCtrl", function ($scope){
-  $scope.message = "Hello World!";
-});
+  angular.module("listaTelefonica", []);
+  angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope){
+    $scope.app = "Lista Telefonica"
+    $scope.contacts = [
+      {name: "Pedro", phoneNumber: "999998888"},
+      {name: "Ana", phoneNumber: "999998877"},
+      {name: "Carlos", phoneNumber: "999998899"},
+    ];
+    $scope.addContact = function (contact) {
+      $scope.contacts.push(angular.copy(contact));
+delete $scope.contact
+    };
 
+  })
   </script>
-</head>
-<body>
-<div ng-controller="helloWorldCtrl">
-  {{message}}
 
+</head>
+<body ng-controller="listaTelefonicaCtrl">
+  <div class="jumbotron">
+    <h3>{{app}}</h3>
+    <table class="table table-striped">
+      <tr>
+        <th>Nome</th>
+        <th>Telefone</th>
+      </tr>
+      <tr ng-repeat="contact in contacts">
+        <td>{{contact.name}}</td>
+        <td>{{contact.phoneNumber}}</td>
+      </tr>
+    </table>
+    <hr/>
+    <input class="form-control" type="text" ng-model="contact.name" placeholder="Ex:José">
+    <input class="form-control" type="text" ng-model="contact.phoneNumber" placeholder="Ex:99998848">
+    <button class="btn btn-primary btn-block" ng-click="addContact(contact)">Adiciona</button>
+{{contact}}
+  </div>
 </div>
 </body>
 </html>

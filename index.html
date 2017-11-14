@@ -17,10 +17,10 @@
   .form-control{
     margin-bottom: 5px;
   }
-  .selecionado{
+  .selected{
     background-color: yellow;
   }
-  .negrito{
+  .bold{
     font-weight: bold;
   }
   </style>
@@ -40,6 +40,7 @@
       {name: "Carlos", phoneNumber: "999998899"},
       {name: "Carlos", phoneNumber: "999998899"},
     ];
+
     $scope.operadoras = [
       {name: "Oi", id: 14, category: "Celular"},
       {name: "Vivo", id: 15, category: "Celular"},
@@ -47,35 +48,37 @@
       {name: "GVT", id: 25, category: "Fixo"},
       {name: "Embratel", id: 21, category: "Fixo"},
     ];
+
     $scope.addContact = function (contact) {
       $scope.contacts.push(angular.copy(contact));
       delete $scope.contact
     };
-    $scope.class1 = "selecionado";
-    $scope.class2 = "negrito";
+    $scope.selected
   })
+
   </script>
 
 </head>
 <body ng-controller="listaTelefonicaCtrl">
   <div class="jumbotron">
     <h3>{{app}}</h3>
+    {{contacts}}
     <table class="table">
       <tr>
+        <th></th>
         <th>Nome</th>
         <th>Telefone</th>
         <th>Operadora</th>
       </tr>
       <hr>
-      <tr ng-class="[class1,class2]" ng-repeat="contact in contacts">
-        <td><input type="checkbox"></td>
+      <tr ng-class="{bold: contact.selected, selected: contact.selected}" ng-repeat="contact in contacts">
+        <td><input type="checkbox" ng-model="contact.selected"/></td>
         <td>{{contact.name}}</td>
         <td>{{contact.phoneNumber}}</td>
         <td>{{contact.operadora.name}}</td>
       </tr>
     </table>
     <hr/>
-    {{contact}}
     <input class="form-control" type="text" ng-model="contact.name" placeholder="Ex:José">
     <input class="form-control" type="text" ng-model="contact.phoneNumber" placeholder="Ex:99998848">
     <select class="form-control" ng-model="contact.operadora" ng-options="operadora.name for operadora in operadoras">
@@ -83,7 +86,6 @@
 
     </select>
     <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="!contact.name || !contact.phoneNumber">Adiciona</button>
-    {{contact}}
   </div>
 </div>
 </body>

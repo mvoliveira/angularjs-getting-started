@@ -71,7 +71,7 @@
         <th>Operadora</th>
       </tr>
       <hr>
-      <tr ng-class="{bold: contact.selected, selected: contact.selected}" ng-repeat="contact in contacts">
+      <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts">
         <td><input type="checkbox" ng-model="contact.selected"/></td>
         <td>{{contact.name}}</td>
         <td>{{contact.phoneNumber}}</td>

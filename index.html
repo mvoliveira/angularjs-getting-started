@@ -20,6 +20,9 @@
   .selecionado{
     background-color: yellow;
   }
+  .negrito{
+    font-weight: bold;
+  }
   </style>
   <script src="lib/angular/angular.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -48,7 +51,8 @@
       $scope.contacts.push(angular.copy(contact));
       delete $scope.contact
     };
-    $scope.class = "selecionado";
+    $scope.class1 = "selecionado";
+    $scope.class2 = "negrito";
   })
   </script>
 
@@ -63,7 +67,7 @@
         <th>Operadora</th>
       </tr>
       <hr>
-      <tr ng-class="class" ng-repeat="contact in contacts">
+      <tr ng-class="[class1,class2]" ng-repeat="contact in contacts">
         <td><input type="checkbox"></td>
         <td>{{contact.name}}</td>
         <td>{{contact.phoneNumber}}</td>

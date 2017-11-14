@@ -53,8 +53,15 @@
       $scope.contacts.push(angular.copy(contact));
       delete $scope.contact
     };
-    $scope.selected
+
+    $scope.deleteContact = function (contacts){
+       $scope.contacts = contacts.filter(function(contact){
+        if (!contact.selected) return contact
+      })
+console.log(contatosSelecionados);
+    }
   })
+
 
   </script>
 
@@ -62,7 +69,7 @@
 <body ng-controller="listaTelefonicaCtrl">
   <div class="jumbotron">
     <h3>{{app}}</h3>
-    {{contacts}}
+    <!-- {{contacts}} -->
     <table class="table">
       <tr>
         <th></th>
@@ -86,6 +93,7 @@
 
     </select>
     <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="!contact.name || !contact.phoneNumber">Adiciona</button>
+    <button class="btn btn-danger btn-block" ng-click="deleteContact(contacts)">Remove contato</button>
   </div>
 </div>
 </body>

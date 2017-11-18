@@ -78,30 +78,38 @@
     <h3>{{app}}</h3>
     <!-- {{contacts}} -->
     <table class="table">
-        <th></th>
-        <th>Nome</th>
-        <th>Telefone</th>
-        <th>Operadora</th>
-      </tr>
-      <hr>
-      <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts">
-        <td><input type="checkbox" ng-model="contact.selected"/></td>
-        <td>{{contact.name}}</td>
-        <td>{{contact.phoneNumber}}</td>
-        <td>{{contact.operadora.name}}</td>
-        <td><div style="width:20px; height:20px" ng-style="{'background-color': contact.color}"></div></td>
-      </tr>
-    </table>
-    <hr/>
-    <input class="form-control" type="text" ng-model="contact.name" placeholder="Ex:José">
-    <input class="form-control" type="text" ng-model="contact.phoneNumber" placeholder="Ex:99998848">
+      <th></th>
+      <th>Nome</th>
+      <th>Telefone</th>
+      <th>Operadora</th>
+    </tr>
+    <hr>
+    <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts">
+      <td><input type="checkbox" ng-model="contact.selected"/></td>
+      <td>{{contact.name}}</td>
+      <td>{{contact.phoneNumber}}</td>
+      <td>{{contact.operadora.name}}</td>
+      <td><div style="width:20px; height:20px" ng-style="{'background-color': contact.color}"></div></td>
+    </tr>
+  </table>
+  <hr/>
+  <form name="contactForm">
+    <input class="form-control" type="text" ng-model="contact.name" name="name" placeholder="Ex:José" ng-required="true"/>
+    <input class="form-control" type="text" ng-model="contact.phoneNumber" name="phoneNumber" placeholder="Ex:99998848" ng-required="true"/>
     <select class="form-control" ng-model="contact.operadora" ng-options="operadora.name for operadora in operadoras">
-      <option value="">Selecione uma operadora</option>
-
-    </select>
-    <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="!contact.name || !contact.phoneNumber">Adicionar contato</button>
-    <button class="btn btn-danger btn-block" ng-click="deleteContact(contacts)" ng-disabled="!isContactSelected(contacts)">Remover  contato</button>
+    </form>
+    <option>Selecione uma operadora</option>
+  </select>
+  <div class="alert alert-danger" ng-show="contactForm.name.$invalid && contactForm.name.$dirty">
+    Por favor, preencha o nome
   </div>
+  <div class="alert alert-danger" ng-show="contactForm.phoneNumber.$invalid && contactForm.phoneNumber.$dirty">
+    Por favor, preencha o telefone
+  </div>
+  <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="contactForm.$invalid">Adicionar contato</button>
+  <button class="btn btn-danger btn-block" ng-click="deleteContact(contacts)" ng-disabled="!isContactSelected(contacts)">Remover  contato</button>
 </div>
+</div>
+<div ng-include="'footer.html'"></div>
 </body>
 </html>

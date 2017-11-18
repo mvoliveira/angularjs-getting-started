@@ -53,7 +53,8 @@
     $scope.addContact = function (contact) {
       $scope.contacts.push(angular.copy(contact));
       delete $scope.contact
-    };
+      $scope.contactForm.$setPristine()
+};
 
     $scope.deleteContact = function (contacts){
       $scope.contacts = contacts.filter(function(contact){
